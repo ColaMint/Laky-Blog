@@ -55,3 +55,9 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# setting file
+lakyblog/setting.yaml
+
+# ctag
+lakyblog/tags

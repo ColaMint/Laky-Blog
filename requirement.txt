@@ -1,0 +1,6 @@
+Flask
+flask-login
+SQLAlchemy
+SQLAlchemy-Utils
+PyYAML
+MySQL-python
