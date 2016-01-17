@@ -1,12 +1,12 @@
-from lakyblog.setting import setting
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy_utils import database_exists, create_database
 from sqlalchemy import Column, Integer, String
 from flask.ext.login import UserMixin
+from lakyblog.config import config
 
-engine = create_engine(setting['database']['url'])
+engine = create_engine(config['database']['url'])
 db_session = scoped_session(sessionmaker(autocommit=True,
                                         autoflush=False,
                                         bind=engine))

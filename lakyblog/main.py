@@ -1,8 +1,7 @@
 import sys, os
 sys.path.append(os.path.abspath('..'))
 from optparse import OptionParser
-from lakyblog.setting import parse_config_file
-import logging.config
+from lakyblog.config import parse_config_file
 
 def parser():
     parser = OptionParser()
@@ -11,7 +10,7 @@ def parser():
                       help='run on debug mode', default=False)
     parser.add_option('-c', '--config',
                       action='store', dest='config_file_path',
-                      help='config file path', default='setting.yaml')
+                      help='config file path', default='config.yaml')
     return parser
 
 def main():
@@ -21,11 +20,7 @@ def main():
     # parse config file into setting.setting
     parse_config_file(options.config_file_path)
 
-    # init database
-    from lakyblog.model import init_db
-    init_db()
-
-    # run flask
+    # run blog
     from lakyblog.app import app
     app.debug = options.debug
     app.run()

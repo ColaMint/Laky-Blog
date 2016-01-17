@@ -1,7 +1,7 @@
 import yaml
 
-setting = {}
+config = {}
 
 def parse_config_file(filepath):
     with open(filepath) as stream:
-        setting.update(yaml.load(stream))
+        config.update(yaml.load(stream))

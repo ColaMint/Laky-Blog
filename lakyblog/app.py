@@ -1,32 +1,40 @@
 from flask import Flask, request, redirect, url_for
 import flask.ext.login as flask_login
-from lakyblog.model import db_session, User
-from lakyblog.setting import setting, parse_config_file
+from lakyblog.model import db_session, User, init_db
+from lakyblog.config import config
 import os, logging
+from logging.config import dictConfig as logging_dict_config
 
 class LakyBlogApp(Flask):
 
-    def __init__(self, import_name, static_path=None, static_url_path=None,
-                static_folder='static', template_folder='templates',
-                instance_path=None, instance_relative_config=False):
+    def __init__(self, import_name):
 
-        Flask.__init__(self, import_name, static_path, static_url_path,
-                    static_folder, template_folder,
-                    instance_path, instance_relative_config)
+        Flask.__init__(self, import_name)
 
+        self.__basic_app_config()
+
+        self.__init_logger()
+
+        self.__init_login_manager()
+
+        init_db()
+
+    def __basic_app_config(self):
         self.config.update({'SECRET_KEY': os.urandom(24),
                             'LOGGER_NAME': 'lakyblog'})
 
-        logging.config.dictConfig(setting['logging'])
+    def __init_logger(self):
+        logging_dict_config(config['logging'])
         self._logger = logging.getLogger('lakyblog')
 
+    def __init_login_manager(self):
+        self.login_manager = flask_login.LoginManager()
+        self.login_manager.init_app(self)
 
 app = LakyBlogApp(__name__)
 
-login_manager = flask_login.LoginManager()
-login_manager.init_app(app)
 
-@login_manager.user_loader
+@app.login_manager.user_loader
 def user_loader(id):
     return User.query.filter(User.id == id).first()
 
