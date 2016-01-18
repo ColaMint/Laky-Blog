@@ -1,0 +1,9 @@
+<header class="inner">
+    {% if current_user.is_authenticated %}
+    <h1>Hi {{ current_user.nickname }}!</h1>
+    {% else %}
+    <h1>Please Login!</h1>
+    {% endif %}
+    <h1 id="title">{{ config.get('blog')['title'] }}</h1>
+    <h3 id="tagline">{{ config.get('blog')['tagline'] }}</h3>
+</header>

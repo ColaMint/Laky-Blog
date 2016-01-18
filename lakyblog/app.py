@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template
 import flask.ext.login as flask_login
 from lakyblog.model import db_session, User, init_db
 from lakyblog.config import config
@@ -11,7 +11,7 @@ class LakyBlogApp(Flask):
 
         Flask.__init__(self, import_name)
 
-        self.__basic_app_config()
+        self.__basic_config()
 
         self.__init_logger()
 
@@ -19,9 +19,10 @@ class LakyBlogApp(Flask):
 
         init_db()
 
-    def __basic_app_config(self):
+    def __basic_config(self):
         self.config.update({'SECRET_KEY': os.urandom(24),
                             'LOGGER_NAME': 'lakyblog'})
+        self.config.update({'blog': config['blog']})
 
     def __init_logger(self):
         logging_dict_config(config['logging'])
@@ -33,7 +34,6 @@ class LakyBlogApp(Flask):
 
 app = LakyBlogApp(__name__)
 
-
 @app.login_manager.user_loader
 def user_loader(id):
     return User.query.filter(User.id == id).first()
@@ -44,14 +44,10 @@ def shutdown_session(exception=None):
 
 @app.route('/')
 def home():
-    return 'Hello World!'
+    return render_template('home.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    import logging
-    logging.getLogger('lakyblog').debug('12312312')
-    app.logger.debug('123')
-    1 / 0
     if request.method == 'POST':
         user = User.query.\
             filter(User.username == request.form['username']).\
@@ -63,4 +59,4 @@ def login():
             flask_login.login_user(user)
             return redirect(url_for('home'))
     else:
-        return 'TODO'
+        return redirect(url_for('home'))

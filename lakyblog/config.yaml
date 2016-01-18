@@ -1,5 +1,5 @@
 database:
-    url: mysql://root:03545328@127.0.0.1:3306/lakyblog
+    url: mysql://root:03545328@127.0.0.1:3306/lakyblog?charset=utf8
 
 logging:
     version: 1
@@ -19,3 +19,8 @@ logging:
             level: DEBUG
             handlers: [file]
             propagate: no
+
+blog:
+    owner: 小明湖畔
+    title: 小明湖畔の博客
+    tagline: 三生石畔，伊人仍旧

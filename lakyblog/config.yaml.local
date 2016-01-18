@@ -1,5 +1,5 @@
 database:
-    url: mysql://root:root@127.0.0.1:3306/lakyblog
+    url: mysql://root:root@127.0.0.1:3306/lakyblog?charset=utf8
 
 logging:
     version: 1
@@ -19,3 +19,8 @@ logging:
             level: DEBUG
             handlers: [file]
             propagate: no
+
+blog:
+    owner: your_name 
+    title: blog_name 
+    tagline: your_tagline 
