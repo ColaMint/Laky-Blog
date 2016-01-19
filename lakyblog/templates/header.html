@@ -2,8 +2,73 @@
     {% if current_user.is_authenticated %}
     <h1>Hi {{ current_user.nickname }}!</h1>
     {% else %}
-    <h1>Please Login!</h1>
+    <div class="align-right">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            sign up 
+        </button>
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+            sign in
+        </button>
+    </div>
     {% endif %}
     <h1 id="title">{{ config.get('blog')['title'] }}</h1>
     <h3 id="tagline">{{ config.get('blog')['tagline'] }}</h3>
 </header>
+<!-- Sign Up Dialog -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog dialog-outter" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title align-center" id="myModalLabel" >Sign In</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Username:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control dialog-input" id="username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Password:</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control dialog-input" id="password"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="remember"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign In Dialog -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title align-center" id="myModalLabel" >Login</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,7 +4,9 @@
         {% block head %}
         <meta charset="utf-8">
         <meta name="description" content="{{ config.get('blog')['owner'] }}'s blog based on Laky-Blog">
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="/static/basic.css">
+        <link rel="stylesheet" type="text/css" href="/static/header.css">
         {% endblock %}
     </head>
     <body>
@@ -19,6 +21,8 @@
         </div>
     </body>
     {% block script%}
+        <script src="/static/jquery-2.2.0.min.js"></script>
+        <script src="/static/bootstrap.min.js"></script>
         <script src="/static/basic.js"></script>
     {% endblock %}
 </html>
