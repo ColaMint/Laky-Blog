@@ -3,10 +3,10 @@
     <h1>Hi {{ current_user.nickname }}!</h1>
     {% else %}
     <div class="align-right">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#sign-up-dialog">
             sign up 
         </button>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#sign-in-dialog">
             sign in
         </button>
     </div>
@@ -15,34 +15,34 @@
     <h3 id="tagline">{{ config.get('blog')['tagline'] }}</h3>
 </header>
 <!-- Sign Up Dialog -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="sign-up-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog dialog-outter" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title align-center" id="myModalLabel" >Sign In</h4>
+                <h4 class="modal-title align-center" id="myModalLabel" >Sign Up</h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal">
+                <form id="form-sign-up" class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-sm-3 control-label">Username:</label>
+                        <div id="sigan-up-alert-email" class="alert alert-danger form-alert" role="alert">Please enter a valid email!</div>
+                        <label class="col-sm-3 control-label">Email:</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control dialog-input" id="username">
+                            <input type="text" class="form-control dialog-input" name="email">
                         </div>
                     </div>
                     <div class="form-group">
+                        <div id="sigan-up-alert-nickname" class="alert alert-danger form-alert" role="alert">...</div>
+                        <label class="col-sm-3 control-label">Nickname:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control dialog-input" name="nickname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="sigan-up-alert-password" class="alert alert-danger form-alert" role="alert">...</div>
                         <label class="col-sm-3 control-label">Password:</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control dialog-input" id="password"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-9">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" id="remember"> Remember me
-                                </label>
-                            </div>
+                            <input type="password" class="form-control dialog-input" name="password"></textarea>
                         </div>
                     </div>
                 </form>
@@ -55,15 +55,37 @@
     </div>
 </div>
 <!-- Sign In Dialog -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+<div class="modal fade" id="sign-in-dialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog dialog-outter" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title align-center" id="myModalLabel" >Login</h4>
+                <h4 class="modal-title align-center" id="myModalLabel" >Sign In</h4>
             </div>
             <div class="modal-body">
-                ...
+                <form id="form-sign-in" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Email:</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control dialog-input" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Password:</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control dialog-input" name="password"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="remember"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

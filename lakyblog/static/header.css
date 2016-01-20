@@ -5,3 +5,8 @@
 .dialog-input {
     max-width: 150;
 }
+
+.form-alert {
+    margin: 0 15px 10px 15px;
+    padding: 10px;
+}

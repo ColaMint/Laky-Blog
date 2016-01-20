@@ -26,16 +26,14 @@ class User(Base, UserMixin):
     __tablename__ = 'user'
 
     id       = Column(Integer, primary_key=True)
-    username = Column(String(64), unique=True, nullable=False)
+    emial    = Column(String(64), unique=True, nullable=False)
     password = Column(String(64), nullable=False)
     nickname = Column(String(64), nullable=False)
-    email    = Column(String(64), nullable=False)
 
-    def __init__(self, username, password, nickname, email):
-        self.username = username
+    def __init__(self, email, password, nickname):
+        self.email    = email
         self.password = password
         self.nickname = nickname
-        self.email    = email
 
     def __repr__(self):
-        return '<User: %s>' % self.username
+        return '<User: %s>' % self.email
